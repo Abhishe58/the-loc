@@ -4,7 +4,7 @@
   <title>Auto Location Tracker</title>
 </head>
 <body>
-  <h2>Auto Location Tracker,</h2>
+  <h2>Auto Location Tracker</h2>
   <p>Status: <span id="status">Waiting...</span></p>
 
   <script>
@@ -15,25 +15,31 @@
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              phone: "tiger0075",
+              phone: "son123",  // Unique phone/user identifier
               lat: position.coords.latitude,
               lng: position.coords.longitude
             })
           })
           .then(res => res.json())
           .then(data => {
+            console.log("Sent:", data);
             document.getElementById('status').innerText = "Location sent at " + new Date().toLocaleTimeString();
           })
-          .catch(() => {
+          .catch(err => {
+            console.error("Send error:", err);
             document.getElementById('status').innerText = "Failed to send location.";
           });
+        }, function(error) {
+          document.getElementById('status').innerText = "Error getting location: " + error.message;
         });
+      } else {
+        document.getElementById('status').innerText = "Geolocation not supported.";
       }
     }
 
-    // Run every 5 minutes (300000 ms)
+    // Send location every 5 minutes
     sendLocation(); // Run immediately
-    setInterval(sendLocation, 300000); // Every 5 minutes
+    setInterval(sendLocation, 5 * 60 * 1000); // Repeat every 5 min
   </script>
 </body>
 </html>
