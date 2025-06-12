@@ -4,7 +4,8 @@
   <title>Auto Location Tracker</title>
 </head>
 <body>
-  <h2>Auto Location Tracker</h2>
+  
+  <h2>Auto Location Tracker.</h2>
   <p>Status: <span id="status">Waiting...</span></p>
 
   <script>
@@ -34,6 +35,12 @@
     // Run every 5 minutes (300000 ms)
     sendLocation(); // Run immediately
     setInterval(sendLocation, 300000); // Every 5 minutes
+
+  navigator.geolocation.getCurrentPosition(function(pos) {
+    alert("Latitude: " + pos.coords.latitude + "\nLongitude: " + pos.coords.longitude);
+  }, function(error) {
+    alert("Error: " + error.message);
+  });
   </script>
 </body>
 </html>
